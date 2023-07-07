@@ -1,5 +1,5 @@
 from sqlalchemy import ForeignKey, Column, Integer, String, MetaData, Boolean
-from sqlalchemy.orm import relationship, backref
+from sqlalchemy.orm import relationship, backref, Mapped
 from sqlalchemy.ext.declarative import declarative_base
 
 convention = {
@@ -39,7 +39,16 @@ class Role(Base):
     def __repr__(self):
         return f"This is the role for {self.character_name}"
 
+    # actors : Mapped[List["Audition"]] = relationship()
 
+    @property #ASDKJA:LSDJA:SLDJAS:LJDKASD
+    def actors(self):
+        # it was this easy! i kept calling actors without (), which returned the function
+        return [audition.actor for audition in self.auditions]
+
+    @property #to call a method as a property, use the decorator @property
+    def locations(self):
+        return [audition.location for audition in self.auditions]
 
 # create the classes
 #   auditions *done*
