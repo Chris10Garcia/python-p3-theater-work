@@ -22,6 +22,11 @@ class Audition(Base):
 
     def __repr__(self):
         return f"Audition with {self.actor} at the {self.location}"
+    
+    def call_back(self):
+        self.hired = True
+        return f"{self.actor} has been hire for the role: {self.role.character_name}"
+
 
 class Role(Base):
     __tablename__ = 'roles'
@@ -37,16 +42,16 @@ class Role(Base):
 
 
 # create the classes
-#   auditions
-#   roles
+#   auditions *done*
+#   roles *done*
 
 # establish relationships
-#   roles = one
-#   audition = many
+#   roles = one *done*
+#   audition = many *done*
 
 # migrattion
-#   run alembic init 
-#   run alembic revision autogenerate
+#   run alembic init *done*
+#   run alembic revision autogenerate *done*
 
 # testing
 #   create seed data

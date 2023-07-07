@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, desc, func
 from sqlalchemy.orm import sessionmaker
 from faker import Faker
 
