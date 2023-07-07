@@ -41,14 +41,32 @@ class Role(Base):
 
     # actors : Mapped[List["Audition"]] = relationship()
 
+    #to call a method as a property, use the decorator @property
     @property #ASDKJA:LSDJA:SLDJAS:LJDKASD
     def actors(self):
-        # it was this easy! i kept calling actors without (), which returned the function
+        # it was this simple! i kept calling actors without (), which returned the function
+        # tried searching within sqlalchemy docs to no avail
+        # first search for <bound methods> was the correct source. shouldn't have been too
+        # quick to dismiss this result
         return [audition.actor for audition in self.auditions]
 
-    @property #to call a method as a property, use the decorator @property
+    @property 
     def locations(self):
         return [audition.location for audition in self.auditions]
+    
+    def lead(self):
+        hired = [audition for audition in self.auditions if audition.hired == 1]
+        try:
+            return hired[0]
+        except:
+            return 'No actor has been hired for this role.'
+        
+    def understudy(self):
+        hired = [audition for audition in self.auditions if audition.hired == 1]
+        try:
+            return hired[1]
+        except:
+            return 'no actor has been hired for understudy for this role.'
 
 # create the classes
 #   auditions *done*
@@ -63,8 +81,8 @@ class Role(Base):
 #   run alembic revision autogenerate *done*
 
 # testing
-#   create seed data
-#   test relationship methods 
+#   create seed data *done*
+#   test relationship methods  *done*
 
-# create methods for auditions
-# create methods for roles
+# create methods for auditions *done*
+# create methods for roles *done*
